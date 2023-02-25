@@ -9,8 +9,8 @@ const ButtonList = ({ list }) => (
   <div className="yuy">
     <p className = 'main'>🤖 Интенты <button className="btn">+</button> </p>
     
-    {list.map((item,index)=> (
-      <Button  key={index} text={item} />
+    {list?.map((item)=> (
+      <Button text={item} />
     ))}
   </div>
 );

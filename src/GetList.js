@@ -27,10 +27,10 @@ function GetIntents() {
      
   
       let values = Object.values(data);;
-      console.log(typeof values);
+      console.log(values);
     return (
     
-      <ButtonList list = {values}/>
+      <ButtonList list = {values[0]}/>
     );
   }
   export default  GetIntents;
