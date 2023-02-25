@@ -1,0 +1,78 @@
+.custom-btn {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    margin: 0 auto 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+    
+  }
+  .btn-2 {
+    background: rgb(96,9,240);
+    background: linear-gradient(0deg, rgba(96,9,240,1) 0%, rgba(129,5,240,1) 100%);
+    border: none;
+    
+  }
+  .btn-2:before {
+    height: 0%;
+    width: 2px;
+  }
+  .btn-2:hover {
+    box-shadow:  2px 2px 2px 0 rgba(255,255,255,.5),
+                -2px -2px 2px 0 rgba(116, 125, 136, .5), 
+      inset -2px -2px 2px 0 rgba(255,255,255,.2),
+      inset 2px 2px 2px 0 rgba(0, 0, 0, .4);
+  }
+  .main{
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+
+  
+.btn {
+  border: none;
+  background: rgb(251,33,117);
+    background: linear-gradient(0deg, rgba(251,33,117,1) 0%, rgba(234,76,137,1) 100%);
+    color: #fff;
+    overflow: hidden;
+}
+.btn:hover {
+    text-decoration: none;
+    color: #fff;
+}
+.btn:before {
+    content: '';
+    display: inline-block;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+}
+.btn:hover{
+  opacity: .7;
+}
+.btn:active{
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+.all{
+  overflow-y: scroll;
+    width: 40%;
+    height: 99vh;
+    background-color: rgb(29, 20, 101);
+}

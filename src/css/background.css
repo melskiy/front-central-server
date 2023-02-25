@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+
+
+body{
+    overflow-y: hidden;
+    font-family: 'Exo', sans-serif;
+    margin:0;
+    padding:0;
+    height:120vh;
+    width: 120vh;
+    background: url(background.jpg) no-repeat;
+    background-size:cover;
+    z-index: 0;
+}
