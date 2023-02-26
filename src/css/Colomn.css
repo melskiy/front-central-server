@@ -70,9 +70,16 @@
     inset -4px -4px 6px 0 rgba(255,255,255,.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
+
 .all{
+}
+
+.list{
   overflow-y: scroll;
-    width: 40%;
-    height: 99vh;
-    background-color: rgb(29, 20, 101);
+  height: 100%;
+  width: 25%;
+  max-width: 40%;
+  height: 99vh;
+  background-color: rgb(29, 20, 101);
+  border: 2px solid #2633eb;
 }
