@@ -5,19 +5,19 @@ import GetBots from "./GetBots.js";
 import ButtonReg from "./button_reg";
 
 class Page extends Component {
- 
+
   render() {
-    return(
+    return (
 
       <div className="page">
-    
-      <div className="list">
-      <div className="main">
-      <div>🤖 Намерения <ButtonReg/></div>
-      </div><GetBots/></div>
 
-        <Chat/>
-   </div>
+        <div className="list">
+          <div className="main">
+            <div>🤖 Намерения <ButtonReg /></div>
+          </div><GetBots /></div>
+
+        <Chat />
+      </div>
     );
   }
 }

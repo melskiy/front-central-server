@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ButtonList from "./button_list";
 
- function GetIntents() {
- 
+function GetIntents() {
+
   const [data, setData] = useState([null]);
   let [guid] = useState('');
-    guid = localStorage.getItem('guid');
+  guid = localStorage.getItem('guid');
 
   useEffect(() => {
     async function fetchData() {
@@ -24,20 +24,13 @@ import ButtonList from "./button_list";
         console.error(error);
       }
     }
-  
     fetchData();
-     
-
-    
-  },[guid]);
-
-
+  }, [guid]);
 
   let values = Object.values(data);
   console.log("🚀 ~ file: GetList.js:37 ~ GetIntents ~ values:", values)
-
-  return (<div className="puka"> <ButtonList list={values} /> </div>);  
-}  
+  return (<div className="puka"> <ButtonList list={values} /> </div>);
+}
 
 
 

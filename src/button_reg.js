@@ -10,10 +10,10 @@ function ButtonReg() {
 
   return (
     <div className="but">
-      <button onClick={handleClick} className = 'btn'>+</button>
+      <button onClick={handleClick} className='btn'>+</button>
       {showComponent && <Form />}
     </div>
   );
 }
 
-export default ButtonReg ;
+export default ButtonReg;

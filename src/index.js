@@ -20,13 +20,12 @@ function LoginForm() {
         password: password,
       }),
     }).then((response) => {
-     return response.json();
+      return response.json();
     })
-    .then((data) =>
-    {
-      localStorage.setItem('token', data['access_token'])
-      app.render(<Page />);
-    });
+      .then((data) => {
+        localStorage.setItem('token', data['access_token'])
+        app.render(<Page />);
+      });
     event.preventDefault();
   };
 

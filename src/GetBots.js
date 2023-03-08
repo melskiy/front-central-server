@@ -39,13 +39,8 @@ function GetBots() {
       list.push({key: element['name'],value:element['guid']});
     })
     console.log(list)
-
-
-    return <GetBotAS options = {list}/>;
-        
+    return <GetBotAS options = {list}/>;    
     
   }
  
-  
-  
 export default GetBots;
