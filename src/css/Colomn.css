@@ -38,8 +38,10 @@
     font-family: 'Lato', sans-serif;
     font-weight: 500;
     color: #fff;
-    border-radius: 5px;
-    padding: 20px;
+    border-radius: 2px;
+    text-align: center;
+    
+    
   }
 
 
@@ -50,10 +52,12 @@
     background: linear-gradient(0deg, rgba(251,33,117,1) 0%, rgba(234,76,137,1) 100%);
     color: #fff;
     overflow: hidden;
+    
 }
 .btn:hover {
     text-decoration: none;
     color: #fff;
+    display:inline-block;
 }
 .btn:before {
     content: '';
@@ -71,8 +75,7 @@
     inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
 
-.all{
-}
+
 
 .list{
   overflow-y: scroll;
@@ -82,4 +85,8 @@
   height: 99vh;
   background-color: rgb(29, 20, 101);
   border: 2px solid #2633eb;
+}
+.but{
+  display:inline-block;
+  margin-bottom: 3vh;
 }

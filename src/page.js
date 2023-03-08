@@ -1,57 +1,25 @@
+
 import React, { Component } from "react";
-import "./css/Chat.css";
-import GetIntents from "./GetList";
+import Chat from "./Chat";
+import GetBots from "./GetBots.js";
+import ButtonReg from "./button_reg";
 
-class Chat extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      messages: [],
-      inputValue: "",
-    };
-    this.handleMessageSend = this.handleMessageSend.bind(this);
-  }
-
-  handleMessageSend() {
-    const { messages, inputValue } = this.state;
-    this.setState({
-      messages: [...messages, inputValue],
-      inputValue: "",
-    });
-  }
-
+class Page extends Component {
+ 
   render() {
-    let { messages, inputValue } = this.state;
-    return (
-      <div className="all">
-        {" "}
-        <div className="list">
-          <GetIntents />
-        </div>
-        <div className="chat-container">
-          <div className="message-container">
-            {messages.map((message, index) => (
-              <div key={index} className="message">
-                {message}
-              </div>
-            ))}
-          </div>
-          <div className="input-container">
-            <input
-              className="input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => this.setState({ inputValue: e.target.value })}
-            />
-            <button className="send-button" onClick={this.handleMessageSend}>
-              Send
-            </button>
-          </div>
-        </div>
-      </div>
+    return(
+
+      <div className="page">
+    
+      <div className="list">
+      <div className="main">
+      <div>🤖 Намерения <ButtonReg/></div>
+      </div><GetBots/></div>
+
+        <Chat/>
+   </div>
     );
   }
 }
 
-export default Chat;
+export default Page;

@@ -3,7 +3,7 @@ import * as ReactDOMClient from "react-dom/client";
 import { useState } from "react";
 import "./css/main.css";
 import "./css/background.css";
-import Chat from "./page";
+import Page from "./page.js";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -20,11 +20,12 @@ function LoginForm() {
         password: password,
       }),
     }).then((response) => {
-      if (response.status === 401) {
-        console.log("pisya");
-      } else {
-        app.render(<Chat />);
-      }
+     return response.json();
+    })
+    .then((data) =>
+    {
+      localStorage.setItem('token', data['access_token'])
+      app.render(<Page />);
     });
     event.preventDefault();
   };
