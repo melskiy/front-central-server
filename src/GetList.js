@@ -11,7 +11,7 @@ function GetIntents() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:11000/intents/${guid}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}intents/${guid}`, {
           method: "GET",
           headers: {
             "Authorization": "Bearer " + localStorage.getItem('token'),

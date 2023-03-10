@@ -10,7 +10,8 @@ function LoginForm() {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
-    fetch("http://localhost:11000/auth/login", {
+
+    fetch(`${process.env.REACT_APP_API_URL}auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -56,5 +57,44 @@ function LoginForm() {
   );
 }
 
+const token = localStorage.getItem('token');
+
+console.log("🚀 ~ file: index.js:64 ~ token :", token)
+
 const app = ReactDOMClient.createRoot(document.getElementById("app"));
-app.render(<LoginForm />);
+
+if (token) {
+
+  fetch(`${process.env.REACT_APP_API_URL}auth/velvet`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ access_token: token })
+
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Ошибка при запросе данных");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("🚀 ~ file: index.js:77 ~ data:", data)
+      if (data['is_valid_token'] === true) {
+        app.render(<Page />);
+      } else {
+        app.render(<LoginForm />);
+      }
+    })
+
+    .catch((error) => {
+      console.error(error);
+    });
+
+} else {
+  app.render(<LoginForm />);
+}
+
+
+

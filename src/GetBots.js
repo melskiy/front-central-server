@@ -14,7 +14,7 @@ function GetBots() {
     }, []);
   
     function fetchData() {
-      return fetch("http://localhost:11000/bots/allowed/", {
+      return fetch(`${process.env.REACT_APP_API_URL}bots/allowed/`, {
         method: "GET",
         headers: {
           "Authorization": "Bearer " + localStorage.getItem('token'),
