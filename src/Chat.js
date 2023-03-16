@@ -14,10 +14,45 @@ class Chat extends Component {
 
   handleMessageSend() {
     const { messages, inputValue } = this.state;
-    this.setState({
-      messages: [...messages, inputValue],
-      inputValue: "",
-    });
+
+    if (inputValue !== '') {
+      fetch(`${process.env.REACT_APP_API_URL}admin_chat/predict`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ bot_guid: localStorage.getItem('guid'), message: inputValue })
+
+
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Ошибка при запросе данных");
+          }
+          return response.json();
+        })
+        .then((data) => {
+
+
+        })
+
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+
+    if (inputValue !== '') {
+      this.setState({
+        messages: [...messages, inputValue],
+        inputValue: "",
+      });
+    } else {
+      this.setState({
+        inputValue: "",
+      });
+    }
+
+
   }
 
   render() {

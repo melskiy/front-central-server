@@ -1,9 +1,10 @@
 import React from "react";
 import * as ReactDOMClient from "react-dom/client";
-import { useState } from "react";
+
 import "./css/main.css";
 import "./css/background.css";
 import Page from "./page.js";
+import { useState } from "react";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -57,6 +58,7 @@ function LoginForm() {
   );
 }
 
+
 const token = localStorage.getItem('token');
 
 console.log("🚀 ~ file: index.js:64 ~ token :", token)
@@ -95,6 +97,5 @@ if (token) {
 } else {
   app.render(<LoginForm />);
 }
-
 
 
