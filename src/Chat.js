@@ -15,15 +15,16 @@ class Chat extends Component {
   handleMessageSend() {
     const { messages, inputValue } = this.state;
 
-    if (inputValue !== '') {
+    if (inputValue !== "") {
       fetch(`${process.env.REACT_APP_API_URL}admin_chat/answer`, {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ bot_guid: localStorage.getItem('guid'), message: inputValue })
-
-
+        body: JSON.stringify({
+          bot_guid: localStorage.getItem("guid"),
+          message: inputValue,
+        }),
       })
         .then((response) => {
           if (!response.ok) {
@@ -31,17 +32,14 @@ class Chat extends Component {
           }
           return response.json();
         })
-        .then((data) => {
-
-
-        })
+        .then((data) => {})
 
         .catch((error) => {
           console.error(error);
         });
     }
 
-    if (inputValue !== '') {
+    if (inputValue !== "") {
       this.setState({
         messages: [...messages, inputValue],
         inputValue: "",
@@ -51,16 +49,13 @@ class Chat extends Component {
         inputValue: "",
       });
     }
-
-
   }
 
   render() {
     let { messages, inputValue } = this.state;
     return (
       <div className="all">
-        <div className="list">
-        </div>
+        <div className="list"></div>
         <div className="chat-container">
           <div className="message-container">
             {messages.map((message, index) => (

@@ -1,34 +1,37 @@
-
-
-
-
-.box{
+.box {
   text-align: center;
 }
+
 select {
   appearance: none;
- 
+
   background-color: transparent;
   border: none;
   width: 100%;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 500;
   cursor: inherit;
   line-height: inherit;
 }
+
 .select {
   max-width: 95%;
   border: 1px solid var(--select-border);
   border-radius: 0.25em;
-  padding: 0.2em;  margin-bottom: 2vh;
+  padding: 0.2em;
+  margin-bottom: 2vh;
   cursor: pointer;
-  color:#feffff;
+  color: #feffff;
   line-height: 1.1;
   background-color: #571fda;
-  background-image: linear-gradient(to top, rgb(96,9,240), rgb(134, 9, 244) 30%);
+  background-image: linear-gradient(
+    to top,
+    rgb(96, 9, 240),
+    rgb(134, 9, 244) 30%
+  );
   text-align: center;
-  
 }
+
 select::-ms-expand {
   display: none;
 }

@@ -11,7 +11,6 @@ function LoginForm() {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
-
     fetch(`${process.env.REACT_APP_API_URL}auth/login`, {
       method: "POST",
       headers: {
@@ -21,11 +20,12 @@ function LoginForm() {
         username: username,
         password: password,
       }),
-    }).then((response) => {
-      return response.json();
     })
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
-        localStorage.setItem('token', data['access_token'])
+        localStorage.setItem("token", data["access_token"]);
         app.render(<Page />);
       });
     event.preventDefault();
@@ -58,22 +58,18 @@ function LoginForm() {
   );
 }
 
-
-const token = localStorage.getItem('token');
-
-console.log("🚀 ~ file: index.js:64 ~ token :", token)
+const token = localStorage.getItem("token");
+console.log("🚀 ~ file: index.js:62 ~ token :", token);
 
 const app = ReactDOMClient.createRoot(document.getElementById("app"));
 
 if (token) {
-
   fetch(`${process.env.REACT_APP_API_URL}auth/velvet`, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ access_token: token })
-
+    body: JSON.stringify({ access_token: token }),
   })
     .then((response) => {
       if (!response.ok) {
@@ -82,20 +78,16 @@ if (token) {
       return response.json();
     })
     .then((data) => {
-      console.log("🚀 ~ file: index.js:77 ~ data:", data)
-      if (data['is_valid_token'] === true) {
+      console.log("🚀 ~ file: index.js:81 ~ data:", data);
+      if (data["is_valid_token"] === true) {
         app.render(<Page />);
       } else {
         app.render(<LoginForm />);
       }
     })
-
     .catch((error) => {
       console.error(error);
     });
-
 } else {
   app.render(<LoginForm />);
 }
-
-
