@@ -12,15 +12,20 @@ function ButtonReg() {
 
     const Form = () => {
         const [formData, setFormData] = useState({
-            topic: '',
-            title: '',
+            name: '',
+            answers: '',
             examples: '',
         });
+
+        const [isChecked, setIsChecked] = useState(false);
+        const handleCheckboxChange = (event) => {
+            setIsChecked(event.target.checked);
+          };
         const [isSubmitted, setIsSubmitted] = useState(false);
         const handleSubmit = (e) => {
             e.preventDefault();
             setIsSubmitted(true);
-            console.log(formData);
+            console.log(formData,isChecked);
         };
         if (isSubmitted) {
             setShowComponent(false);
@@ -44,16 +49,27 @@ function ButtonReg() {
                     <input
                         type="text"
                         value={formData.topic}
-                        name="topic"
+                        name="name"
                         onChange={handleChange}
                     />
                 </label>
+                <label>
+                    Команда
+                <input
+      type="checkbox"
+      name="command"
+      value={formData.command} 
+      checked={formData.command}
+      onChange={handleCheckboxChange}/>
+      
+                </label>
+           
                 <label>
                     Ответ:
                     <input
                         type="text"
                         value={formData.title}
-                        name="title"
+                        name="answers"
                         onChange={handleChange}
                     />
                 </label>
