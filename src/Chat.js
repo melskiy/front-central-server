@@ -16,7 +16,7 @@ class Chat extends Component {
     const { messages, inputValue } = this.state;
 
     if (inputValue !== '') {
-      fetch(`${process.env.REACT_APP_API_URL}admin_chat/predict`, {
+      fetch(`${process.env.REACT_APP_API_URL}admin_chat/answer`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
