@@ -37,7 +37,6 @@ function GetBots() {
   data.forEach((element) => {
     list.push({ key: element["name"], value: element["guid"] });
   });
-  console.log("🚀 ~ file: GetBots.js:40 ~ list:", list);
   return <GetBotAS options={list} />;
 }
 

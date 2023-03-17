@@ -31,7 +31,6 @@ function GetIntents() {
   data.forEach((element) => {
     values.push(element["name"]);
   });
-  console.log("🚀 ~ file: GetList.js:32 ~ GetIntents ~ values:", values);
 
   return (
     <div className="puka">

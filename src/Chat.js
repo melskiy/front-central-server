@@ -16,9 +16,11 @@ class Chat extends Component {
     const { messages, inputValue } = this.state;
 
     if (inputValue !== "") {
+      console.log(localStorage.getItem("token"));
       fetch(`${process.env.REACT_APP_API_URL}admin_chat/answer`, {
         method: "POST",
         headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token"),
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -32,7 +34,10 @@ class Chat extends Component {
           }
           return response.json();
         })
-        .then((data) => {})
+        .then((data) => {
+          console.log("🚀 ~ file: chat.js:38 ~ Chat ~ handleMessageSend ~ data:", data)
+        })
+        
 
         .catch((error) => {
           console.error(error);
