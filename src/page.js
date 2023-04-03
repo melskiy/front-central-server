@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Chat from "./Chat";
+import Chat from "./Chat.js"
 import GetBots from "./GetBots.js";
 import ButtonReg from "./button_reg";
 import Logout from "./Logout_button";
-
+import Learn from "./learnbutton";
 class Page extends Component {
   render() {
     return (
@@ -15,8 +15,10 @@ class Page extends Component {
             </div>
           </div>
           <GetBots />
+          <Learn/>
         </div>
         <Logout />
+        
         <Chat />
       </div>
     );

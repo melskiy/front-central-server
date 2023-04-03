@@ -10,7 +10,7 @@ function GetIntents() {
     async function fetchData() {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}intents/${guid}`,
+          `${process.env.REACT_APP_API_URL}intents/allowed/${guid}`,
           {
             method: "GET",
             headers: {

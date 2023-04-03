@@ -22,9 +22,46 @@ function ButtonReg() {
 
     const [isSubmitted, setIsSubmitted] = useState(false);
     const handleSubmit = (e) => {
-      e.preventDefault();
       setIsSubmitted(true);
-      console.log(formData, isChecked);
+      console.log(formData);
+
+      function fetchData() {
+        let rang = 0;
+        if (isChecked) {
+          rang = -1;
+        }
+        return fetch(`${process.env.REACT_APP_API_URL}intents/form`, {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData["name"],
+            answer: formData["answers"],
+            rank: rang,
+            bot_guid: localStorage.getItem("guid"),
+            examples: [formData["examples"]],
+          }),
+        })
+        
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Ошибка при запросе данных");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("🚀 ~ file: button_reg.js:56 ~ .then ~ data:", data);
+            return data;
+          })
+
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+      fetchData();
+      e.preventDefault();
     };
 
     if (isSubmitted) {
@@ -42,7 +79,7 @@ function ButtonReg() {
     };
 
     return (
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="forma" onSubmit={handleSubmit}>
         <label>
           Название:
           <input

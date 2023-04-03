@@ -12,6 +12,7 @@ function Logout() {
   // перенаправить пользователя на страницу входа при выходе
   if (isLoggedOut) {
     localStorage.removeItem("token");
+    localStorage.removeItem("guid");
     window.location.reload();
   }
 

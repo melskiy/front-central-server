@@ -25,10 +25,18 @@
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
-  margin-left: 40%;
+  margin-left:50%;
   color: white;
 }
-
+.answer{
+  background-color: #036f96;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: 0%;
+  margin-right: 60%;
+  color: white;
+}
 .input-container {
   display: flex;
   margin-top: 10px;

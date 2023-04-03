@@ -64,6 +64,7 @@ console.log("🚀 ~ file: index.js:62 ~ token :", token);
 const app = ReactDOMClient.createRoot(document.getElementById("app"));
 
 if (token) {
+  localStorage.removeItem("guid");
   fetch(`${process.env.REACT_APP_API_URL}auth/velvet`, {
     method: "POST",
     headers: {

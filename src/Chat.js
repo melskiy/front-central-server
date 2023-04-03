@@ -7,15 +7,19 @@ class Chat extends Component {
 
     this.state = {
       messages: [],
+      answer: [],
       inputValue: "",
     };
+    
     this.handleMessageSend = this.handleMessageSend.bind(this);
   }
 
-  handleMessageSend() {
-    const { messages, inputValue } = this.state;
-
+  handleMessageSend(event) {
+   
+    const { messages, inputValue,answer } = this.state;
+   
     if (inputValue !== "") {
+      
       console.log(localStorage.getItem("token"));
       fetch(`${process.env.REACT_APP_API_URL}admin_chat/answer`, {
         method: "POST",
@@ -36,50 +40,65 @@ class Chat extends Component {
         })
         .then((data) => {
           console.log("🚀 ~ file: chat.js:38 ~ Chat ~ handleMessageSend ~ data:", data)
+          this.setState({
+            answer: [...answer, data["answer"]],
+          });
         })
         
 
         .catch((error) => {
           console.error(error);
         });
-    }
-
-    if (inputValue !== "") {
-      this.setState({
-        messages: [...messages, inputValue],
-        inputValue: "",
-      });
+       
+        this.setState({
+          messages: [...messages, inputValue],
+          inputValue: "",
+        });
+        event.preventDefault();
     } else {
       this.setState({
         inputValue: "",
       });
+      event.preventDefault();
     }
   }
 
   render() {
-    let { messages, inputValue } = this.state;
+    let { messages, inputValue,answer} = this.state;
     return (
       <div className="all">
         <div className="list"></div>
         <div className="chat-container">
           <div className="message-container">
-            {messages.map((message, index) => (
+            {messages.map((message, index) => {
+              return(
               <div key={index} className="message">
                 {message}
-              </div>
-            ))}
+                <div className="answer" key = {index}>{answer[index]}</div>
+              </div>)
+              
+             
+             })}
+            
+            
           </div>
+          
+          
+          <form className = 'inputform' onSubmit={this.handleMessageSend}>
           <div className="input-container">
             <input
               className="input"
               type="text"
               value={inputValue}
               onChange={(e) => this.setState({ inputValue: e.target.value })}
+              onKeyDown={(e) => e.key === "Enter" ? this.handleMessageSend : null}
             />
-            <button className="send-button" onClick={this.handleMessageSend}>
+            <button type = "onSubmit" className="send-button" >
               Send
             </button>
-          </div>
+            </div>
+            </form>
+          
         </div>
       </div>
     );
