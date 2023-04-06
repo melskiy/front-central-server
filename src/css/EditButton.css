@@ -1,4 +1,5 @@
 .edit-button {
+  display:inline-block;
     background-color: rgb(29, 20, 101);
     color: #fff;
     border: none;
@@ -13,5 +14,27 @@
   }
   
   .edit-button i {
+    margin-right: 5px;
+  }
+
+
+  .delete-button{
+    font-weight: normal; /* или font-weight: 400; */
+
+    display:inline-block;
+    background-color: rgb(29, 20, 101);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .delete-button:hover {
+    background-color: #0062cc;
+  }
+  
+  .delete-button i {
     margin-right: 5px;
   }

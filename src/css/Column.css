@@ -2,7 +2,8 @@
   display: flex;
   display:inline-block;
   flex-direction: column;
-  width: 80%;
+  text-align: left;
+  width: 71%;
   color: #fff;
   border-radius: 5px;
   padding: 10px;
@@ -97,5 +98,13 @@
 
 .but {
   display:inline-block;
+  margin-bottom: 3vh;
+}
+
+.buttons-left{
+  display:inline-block;
+
+}
+.edit{
   margin-bottom: 3vh;
 }

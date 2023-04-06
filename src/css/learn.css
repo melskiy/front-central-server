@@ -9,15 +9,21 @@
     cursor: pointer;
     position: relative;
     width: 80%;
-    z-index: 7;
+    z-index: 20;
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    
+    position: fixed;
+width: 20%;
+height: 30px;
+left: 2%;
+top: 100;
     bottom: 0;
-    left: 50%;
-  transform: translateX(-50%);
+    /* left: 50%;
+    transition: bottom 0.2s ease-out;
+  transform: translateX(-50%); */
   }
   
   .learnbutton {
@@ -26,13 +32,16 @@
   
 
   .learnbutton:hover {
-    opacity: 0.8;
+    opacity: 0.9;
   }
   
   .learnbutton:active {
-    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    box-shadow: 4px 4px 6px 0 rgba(9, 17, 251, 0.3),
       -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
       inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
       inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
   }
   
+  .learnbutton.fixed {
+    position: fixed;
+  }

@@ -2,13 +2,16 @@ import React from "react";
 import "./css/LogoutButton.css";
 import "./css/learn.css"
 function Learn() {
+
   return (
     <div>
       <button className="learnbutton">
-        Обучить
+    Отправить
       </button>
     </div>
   );
 }
 
 export default Learn;
+
+

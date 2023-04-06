@@ -11,7 +11,7 @@ const ButtonList = ({ list }) => (
       
       if(item !== ""){
         return(
-        <div>
+        <div className="edit">
         <Button text={item} key={index} /> <EditButton/>
         </div>)
       }else{

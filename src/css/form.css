@@ -1,10 +1,11 @@
 .forma {
-  display: absolute;
   flex-direction: column;
+  /* display: absolute; */
   align-items: center;
   font-family: "Lato", sans-serif;
   margin-top: 3vh;
   margin-bottom: 3vh;
+  
 }
 
 label {
