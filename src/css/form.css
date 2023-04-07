@@ -1,25 +1,29 @@
 .forma {
   flex-direction: column;
-  /* display: absolute; */
+  display: flex;
   align-items: center;
   font-family: "Lato", sans-serif;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  /* margin:auto; */
+  width: 100%;
+  overflow-x: hidden;
   
 }
 
 label {
+  /* display:inline-block; */
   color: #ffffff;
   font-weight: bold;
   font-family: "Lato", sans-serif;
 }
 
-input,
+.inputs,
 textarea {
+  display: inline-block; 
   padding: 0.5rem;
   border: 1px solid #734beb;
   border-radius: 5px;
   width: 100%;
+  margin-bottom: 0.5vh;
   font-size: 1rem;
 }
 
@@ -32,4 +36,13 @@ textarea {
   color: #fff;
   font-size: 1rem;
   display: inline-block;
+  margin-bottom: 0.3vh;
+}
+
+.item{
+  display: inline-block;
+  margin-bottom: 0.5vh;
+}
+hr{
+  width: 100%;
 }

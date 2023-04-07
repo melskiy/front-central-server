@@ -38,3 +38,13 @@
   .delete-button i {
     margin-right: 5px;
   }
+  .buttons-left{
+    display:inline-block;
+    /* height: 40px; */
+  
+  }
+  /* .butbut {
+    display: flex;
+
+  }
+   */

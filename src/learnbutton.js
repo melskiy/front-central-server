@@ -6,7 +6,7 @@ function Learn() {
   return (
     <div>
       <button className="learnbutton">
-    Отправить
+    Обучить
       </button>
     </div>
   );

@@ -79,13 +79,16 @@ function ButtonReg() {
     };
 
     return (
+        
+      <div>
+        <React.Fragment><br/></React.Fragment>
       <form className="forma" onSubmit={handleSubmit}>
         <label>
-          Название:
           <input
             type="text"
             value={formData.topic}
             name="name"
+            placeholder="Название"
             onChange={handleChange}
           />
         </label>
@@ -102,9 +105,9 @@ function ButtonReg() {
         </label>
 
         <label>
-          Ответ:
           <input
             type="text"
+            placeholder="Ответы"
             value={formData.title}
             name="answers"
             onChange={handleChange}
@@ -112,8 +115,9 @@ function ButtonReg() {
         </label>
 
         <label className="placeholder">
-          Примеры:
+          
           <textarea
+             placeholder="Примеры"
             value={formData.examples}
             name="examples"
             onChange={handleChange}
@@ -124,6 +128,7 @@ function ButtonReg() {
           Отправить
         </button>
       </form>
+      </div>
     );
   };
 

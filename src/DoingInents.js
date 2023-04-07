@@ -10,6 +10,10 @@ function DoIntents(){
         answers: "",
         examples: "",
       });
+
+      function cnel(){
+        return(<div></div>)
+      }
     
       const [isChecked, setIsChecked] = useState(false);
       const handleCheckboxChange = (event) => {
@@ -74,44 +78,109 @@ function DoIntents(){
         }));
       };
     
-    
-
+    if (isChecked){
       return (
+        
+        <div>
+          <React.Fragment><br/></React.Fragment>
         <form className="forma" onSubmit={handleSubmit}>
-          <label>
-            Название:
-            <input
-              type="text"
-              value={formData.topic}
-              name="name"
-              onChange={handleChange}
-            />
-          </label>
-  
-          <label>
-            Команда
-            <input
+        <div className="item">
+            <input 
+              id="c"
               type="checkbox"
               name="command"
               value={formData.command}
               checked={formData.command}
               onChange={handleCheckboxChange}
+
+            />
+          <label for="c">команда</label>
+          </div>
+
+          <label>
+            <input className="inputs"
+              type="text"
+              value={formData.topic}
+              name="name"
+              placeholder="Название"
+              onChange={handleChange}
+              required ={true}
+              min= {1}
             />
           </label>
-  
+        
+          
           <label>
-            Ответ:
-            <input
+            <input className="inputs"
               type="text"
+              placeholder="Ответы"
               value={formData.title}
               name="answers"
+              required ={true}
+              min= {1}
+              onChange={handleChange}
+            />
+          </label>
+          <button type="submit" className="submit">
+            Отправить
+          </button>
+          
+          <button className="cnel" onClick={cnel()}>
+            ❌
+          </button>
+          <hr/>
+        </form>
+        </div>
+      );
+    }
+
+      return (
+        
+        <div>
+          <React.Fragment><br/></React.Fragment>
+        <form className="forma" onSubmit={handleSubmit}>
+        <div className="item">
+            <input 
+              id="c"
+              type="checkbox"
+              name="command"
+              value={formData.command}
+              checked={formData.command}
+              onChange={handleCheckboxChange}
+
+            />
+          <label for="c">команда</label>
+          </div>
+
+          <label>
+            <input className="inputs"
+              type="text"
+              value={formData.topic}
+              name="name"
+              placeholder="Название"
+              onChange={handleChange}
+              required ={true}
+              min= {1}
+            />
+          </label>
+        
+          
+          <label>
+            <input className="inputs"
+              type="text"
+              placeholder="Ответы"
+              value={formData.title}
+              name="answers"
+              required ={true}
+              min= {1}
               onChange={handleChange}
             />
           </label>
   
           <label className="placeholder">
-            Примеры:
+            
             <textarea
+               placeholder="Примеры"
               value={formData.examples}
               name="examples"
               onChange={handleChange}
@@ -121,7 +190,12 @@ function DoIntents(){
           <button type="submit" className="submit">
             Отправить
           </button>
+          <button className="cnel" onClick={cnel()}>
+            ❌
+          </button>
+          <hr/>
         </form>
+        </div>
       );
     };
 

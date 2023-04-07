@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/Column.css";
 import EditButton from "./editbotton";
 const Button = ({ text }) => (
   <button className="custom-btn btn-2">{text}</button>
 );
 
-const ButtonList = ({ list }) => (
+function ButtonList({ list }){
+  const [showComponent, setShowComponent] = useState([]);
+  const showChild = (i) => (
+    setShowComponent(
+      [...showComponent, i],
+    )
+  );
+  
+  
+  return(
   <div className="yuy">
     {list?.map((item, index) => {
       
-      if(item !== ""){
+      if(item !== "" && !(index in showComponent) ){
         return(
-        <div className="edit">
-        <Button text={item} key={index} /> <EditButton/>
+        <div className="edit" id="editing">
+         <Button text={item} key={index} /> <EditButton index = {index}  showChild = {showChild}/>
         </div>)
       }else{
         return(
@@ -22,6 +31,7 @@ const ButtonList = ({ list }) => (
      
     })}
   </div>
-);
+  );
+}
 
 export default ButtonList;
