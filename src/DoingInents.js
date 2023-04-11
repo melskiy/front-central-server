@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import "./css/form.css";
 
-function DoIntents(){
-    const [showComponent, setShowComponent] = useState(false);
-    
+function DoIntents(props){
+    const clicked = useState(props);
+    console.log(clicked)
+    console.log(`${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem("guid")}/${clicked[0]['name']}`)
+    const [showComponent, setShowComponent] = useState(clicked[0]['clicked']);
     const Form = () => {
       const [formData, setFormData] = useState({
         name: "",
         answers: "",
         examples: "",
       });
-
-      function cnel(){
-        return(<div></div>)
-      }
-    
       const [isChecked, setIsChecked] = useState(false);
       const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
@@ -30,7 +27,7 @@ function DoIntents(){
           if (isChecked) {
             rang = -1;
           }
-          return fetch(`${process.env.REACT_APP_API_URL}intents/form`, {
+          return fetch(`${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem("guid")}/${encodeURIComponent(clicked[0]['name'])}`, {
             method: "POST",
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),
@@ -64,7 +61,7 @@ function DoIntents(){
         e.preventDefault();
       };
     
-      if (isSubmitted) {
+      if (isSubmitted || !clicked[0]['clicked']) {
         setShowComponent(false);
         // setIsSubmitted(false);
         return <div></div>;
@@ -113,7 +110,7 @@ function DoIntents(){
           <label>
             <input className="inputs"
               type="text"
-              placeholder="Ответы"
+              placeholder="Ответ"
               value={formData.title}
               name="answers"
               required ={true}
@@ -125,9 +122,9 @@ function DoIntents(){
             Отправить
           </button>
           
-          <button className="cnel" onClick={cnel()}>
+          {/* <button className="cnel" onClick={cnel()}>
             ❌
-          </button>
+          </button> */}
           <hr/>
         </form>
         </div>
@@ -168,7 +165,7 @@ function DoIntents(){
           <label>
             <input className="inputs"
               type="text"
-              placeholder="Ответы"
+              placeholder="Ответ"
               value={formData.title}
               name="answers"
               required ={true}
@@ -190,20 +187,21 @@ function DoIntents(){
           <button type="submit" className="submit">
             Отправить
           </button>
-          <button className="cnel" onClick={cnel()}>
+          {/* <button className="cnel" onClick={cnel()}>
             ❌
-          </button>
+          </button> */}
           <hr/>
         </form>
         </div>
       );
     };
-
-    return (
-      
-        <Form />
-       
-      );
+    
+   
+      return(
+        <div>{showComponent && <Form />}</div>
+         );
+    
+  
 
     } 
 

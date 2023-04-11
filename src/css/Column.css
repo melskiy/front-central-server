@@ -41,6 +41,8 @@
 }
 
 .main {
+  flex-direction: column;
+  display: flex;
   font-family: "Lato", sans-serif;
   font-weight: 500;
   color: #fff;
@@ -98,7 +100,13 @@
 
 .but {
   display:inline-block;
-  margin-bottom: 3vh;
+    background-color: rgb(29, 20, 101);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
 }
 
 .buttons-left{
@@ -109,4 +117,7 @@
   display: fixed;
   padding: 0;
   margin: 0;
+}
+.list{
+  display:inline-block;
 }

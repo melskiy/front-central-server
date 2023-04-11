@@ -10,7 +10,7 @@ class Page extends Component {
       <div className="page">
         <div className="list">
           <div className="main">
-            <div>
+            <div className="line">
               🤖 Намерения <ButtonReg />
             </div>
           </div>

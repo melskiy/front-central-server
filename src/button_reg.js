@@ -77,60 +77,71 @@ function ButtonReg() {
         [name]: value,
       }));
     };
-
-    return (
+      
+      return (
         
-      <div>
-        <React.Fragment><br/></React.Fragment>
-      <form className="forma" onSubmit={handleSubmit}>
-        <label>
-          <input
-            type="text"
-            value={formData.topic}
-            name="name"
-            placeholder="Название"
-            onChange={handleChange}
-          />
-        </label>
+        <div>
+          <React.Fragment><br/></React.Fragment>
+        <form className="forma" onSubmit={handleSubmit}>
+        <div className="item">
+            <input 
+              id="c"
+              type="checkbox"
+              name="command"
+              value={formData.command}
+              checked={formData.command}
+              onChange={handleCheckboxChange}
 
-        <label>
-          Команда
-          <input
-            type="checkbox"
-            name="command"
-            value={formData.command}
-            checked={formData.command}
-            onChange={handleCheckboxChange}
-          />
-        </label>
+            />
+          <label for="c">команда</label>
+          </div>
 
-        <label>
-          <input
-            type="text"
-            placeholder="Ответы"
-            value={formData.title}
-            name="answers"
-            onChange={handleChange}
-          />
-        </label>
-
-        <label className="placeholder">
+          <label>
+            <input className="inputs"
+              type="text"
+              value={formData.topic}
+              name="name"
+              placeholder="Название"
+              onChange={handleChange}
+              required ={true}
+              min= {1}
+            />
+          </label>
+        
           
-          <textarea
-             placeholder="Примеры"
-            value={formData.examples}
-            name="examples"
-            onChange={handleChange}
-          />
-        </label>
-
-        <button type="submit" className="submit">
-          Отправить
-        </button>
-      </form>
-      </div>
-    );
-  };
+          <label>
+            <input className="inputs"
+              type="text"
+              placeholder="Ответ"
+              value={formData.title}
+              name="answers"
+              required ={true}
+              min= {1}
+              onChange={handleChange}
+            />
+          </label>
+  
+          <label className="placeholder">
+            
+            <textarea
+               placeholder="Примеры"
+              value={formData.examples}
+              name="examples"
+              onChange={handleChange}
+            />
+          </label>
+  
+          <button type="submit" className="submit">
+            Отправить
+          </button>
+          {/* <button className="cnel" onClick={cnel()}>
+            ❌
+          </button> */}
+          <hr/>
+        </form>
+        </div>
+      );
+    };
 
   return (
     <div className="but">
