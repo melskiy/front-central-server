@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {  Component } from "react";
 import "./css/Chat.css";
-
+import Preload from "./preload.gif";
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +9,7 @@ class Chat extends Component {
       messages: [],
       answer: [],
       inputValue: "",
+      loading: false,
     };
     
     this.handleMessageSend = this.handleMessageSend.bind(this);
@@ -19,7 +20,7 @@ class Chat extends Component {
     const { messages, inputValue,answer } = this.state;
    
     if (inputValue !== "") {
-      
+      this.setState({ loading: true });
       console.log(localStorage.getItem("token"));
       fetch(`${process.env.REACT_APP_API_URL}admin_chat/answer`, {
         method: "POST",
@@ -42,6 +43,7 @@ class Chat extends Component {
           console.log("🚀 ~ file: chat.js:38 ~ Chat ~ handleMessageSend ~ data:", data)
           this.setState({
             answer: [...answer, data["answer"]],
+            loading: false
           });
         })
         
@@ -64,7 +66,7 @@ class Chat extends Component {
   }
 
   render() {
-    let { messages, inputValue, answer} = this.state;
+    let { messages, inputValue, answer,loading} = this.state;
     return (
       <div className="all">
         <div className="list"></div>
@@ -74,7 +76,7 @@ class Chat extends Component {
               return(
                 <div key={index} className="message">
                   <div className="user-message" >{message}</div>
-                  <div className="bot-answer" key = {index}>{answer[index]}</div>
+                  { answer[index] ? <div className="bot-answer" key = {index}>{answer[index]}</div> :<div className="bot-answer"> <img className="preload" src={Preload} width='80' alt="Загрузка..."/></div>}
                 </div>
               )
              })}
@@ -82,13 +84,21 @@ class Chat extends Component {
           
           <form className = 'inputform' onSubmit={this.handleMessageSend}>
           <div className="input-container">
-            <input
+            {!loading ? <input
               className="input"
               type="text"
               value={inputValue}
               onChange={(e) => this.setState({ inputValue: e.target.value })}
               onKeyDown={(e) => e.key === "Enter" ? this.handleMessageSend : null}
-            />
+            /> : <input 
+            className="input"
+            type="text"
+            value={inputValue}
+            placeholder="Загрузка..."
+            readOnly ='true'
+            onChange={(e) => this.setState({ inputValue: e.target.value })}
+            onKeyDown={(e) => e.key === "Enter" ? this.handleMessageSend : null}
+          /> }
             <button type = "onSubmit" className="send-button" >
               Send
             </button>
