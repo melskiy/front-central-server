@@ -64,7 +64,7 @@ class Chat extends Component {
   }
 
   render() {
-    let { messages, inputValue,answer} = this.state;
+    let { messages, inputValue, answer} = this.state;
     return (
       <div className="all">
         <div className="list"></div>
@@ -72,17 +72,13 @@ class Chat extends Component {
           <div className="message-container">
             {messages.map((message, index) => {
               return(
-              <div key={index} className="message">
-                {message}
-                <div className="answer" key = {index}>{answer[index]}</div>
-              </div>)
-              
-             
+                <div key={index} className="message">
+                  <div className="user-message" >{message}</div>
+                  <div className="bot-answer" key = {index}>{answer[index]}</div>
+                </div>
+              )
              })}
-            
-            
           </div>
-          
           
           <form className = 'inputform' onSubmit={this.handleMessageSend}>
           <div className="input-container">

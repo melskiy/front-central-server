@@ -3,9 +3,16 @@ import "./css/form.css";
 
 function ButtonReg() {
   const [showComponent, setShowComponent] = useState(false);
+  const [clicked, setclicked] = useState(false);
 
   const handleClick = () => {
     setShowComponent(true);
+    setclicked(true);
+  };
+
+  const empty_div = () => {
+    setShowComponent(false);
+    setclicked(false);
   };
 
   const Form = () => {
@@ -79,7 +86,6 @@ function ButtonReg() {
     };
       
       return (
-        
         <div>
           <React.Fragment><br/></React.Fragment>
         <form className="forma" onSubmit={handleSubmit}>
@@ -145,7 +151,8 @@ function ButtonReg() {
 
   return (
     <div className="but">
-      <button onClick={handleClick} className="btn">
+      🤖 Намерения
+      <button onClick={clicked ? empty_div : handleClick} className="btn">
         +
       </button>
       {showComponent && <Form />}

@@ -51,6 +51,7 @@
 }
 
 .btn {
+  cursor: pointer;
   border: none;
   background: rgb(251, 33, 117);
   background: linear-gradient(
@@ -58,6 +59,7 @@
     rgba(251, 33, 117, 1) 0%,
     rgba(234, 76, 137, 1) 100%
   );
+  margin: 0 0 0 8px;
   color: #fff;
   overflow: hidden;
 }
@@ -99,13 +101,11 @@
 }
 
 .but {
-  display:inline-block;
     background-color: rgb(29, 20, 101);
     color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    cursor: pointer;
     text-align: center;
 }
 
@@ -116,7 +116,7 @@
 .edit{
   display: fixed;
   padding: 0;
-  margin: 0;
+  margin: 8px 0 0;
 }
 .list{
   display:inline-block;

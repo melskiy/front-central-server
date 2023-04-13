@@ -21,30 +21,28 @@
 }
 
 .message {
-  background-color: #0b0b2f;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  margin-left:50%;
-  color: white;
+  width: 90%;
 }
-.answer{
-  background-color: #036f96;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  margin-left: 0%;
-  margin-right: 60%;
-  color: white;
+.user-message {
+  color: rgb(196 222 247);
+  padding: 8px;
 }
+.bot-answer{
+  color: rgb(0,49,83);
+  margin: 8px 0;
+  padding: 8px;
+  background-color: rgb(196 222 247);
+  border: hidden;
+  border-radius: 8px;
+}
+
 .input-container {
   display: flex;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 12px 0;
 }
 
 .input {
-  background-color: #76b1ec;
+  background-color: #87bcf0;
   flex: 1;
   padding: 10px;
   border-radius: 5px;

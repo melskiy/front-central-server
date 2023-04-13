@@ -19,7 +19,7 @@ select {
   border: 1px solid var(--select-border);
   border-radius: 0.25em;
   padding: 0.2em;
-  margin-bottom: 2vh;
+  margin: 8px 0 0;
   cursor: pointer;
   color: #feffff;
   line-height: 1.1;

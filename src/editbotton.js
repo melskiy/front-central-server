@@ -20,7 +20,7 @@ function EditButton (props) {
   return (
     <div className='butbut'>
     <div className='buttons-left'>
-    <button className="edit-button" onClick={clicked ?  empty_div :handleClick}>
+    <button className="edit-button" onClick={clicked ? empty_div : handleClick}>
       <i className="fas fa-edit">✏️</i>
     </button>
     <button className="delete-button" onClick={ () =>showChild(item)}>
