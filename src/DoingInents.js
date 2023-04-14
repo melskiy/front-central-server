@@ -21,7 +21,7 @@ function DoIntents(props){
       const handleSubmit = (e) => {
         setIsSubmitted(true);
         console.log(formData);
-    
+        console.log(formData["examples"].split(/\r?\n/))
         function fetchData() {
           let rang = 0;
           if (isChecked) {
@@ -38,7 +38,7 @@ function DoIntents(props){
               answer: formData["answers"],
               rank: rang,
               bot_guid: localStorage.getItem("guid"),
-              examples: [formData["examples"]],
+              examples: formData["examples"].split(/\r?\n/),
             }),
           })
           

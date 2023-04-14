@@ -22,6 +22,7 @@ function ButtonReg() {
       examples: "",
     });
 
+
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxChange = (event) => {
       setIsChecked(event.target.checked);
@@ -76,7 +77,7 @@ function ButtonReg() {
       // setIsSubmitted(false);
       return <div></div>;
     }
-
+  
     const handleChange = (e) => {
       const { name, value } = e.target;
       setFormData((prevData) => ({
@@ -85,6 +86,60 @@ function ButtonReg() {
       }));
     };
       
+    if (isChecked){
+      return (
+        
+        <div>
+          <React.Fragment><br/></React.Fragment>
+        <form className="forma" onSubmit={handleSubmit}>
+        <div className="item">
+            <input 
+              id="c"
+              type="checkbox"
+              name="command"
+              value={formData.command}
+              checked={formData.command}
+              onChange={handleCheckboxChange}
+
+            />
+          <label for="c">команда</label>
+          </div>
+
+          <label>
+            <input className="inputs"
+              type="text"
+              value={formData.topic}
+              name="name"
+              placeholder="Название"
+              onChange={handleChange}
+              required ={true}
+              min= {1}
+            />
+          </label>
+        
+          
+          <label>
+            <input className="inputs"
+              type="text"
+              placeholder="Ответ"
+              value={formData.title}
+              name="answers"
+              required ={true}
+              min= {1}
+              onChange={handleChange}
+            />
+          </label>
+          <button type="submit" className="submit">
+            Отправить
+          </button>
+          
+          <hr/>
+        </form>
+        </div>
+      );
+    }
+
+    
       return (
         <div>
           <React.Fragment><br/></React.Fragment>
