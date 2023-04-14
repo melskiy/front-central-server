@@ -1,8 +1,12 @@
-import React from "react";
+import {React, useState} from "react";
 import "./css/LogoutButton.css";
 import "./css/learn.css"
+import Preload from "./preload.gif";
+
 function Learn() {
+  const [loading, setloading] = useState(false)
   const handleClick = () => {
+    setloading(true)
     const guid =  localStorage.getItem("guid")
     return fetch(`${process.env.REACT_APP_API_URL}ml/train/${guid}`, {
       method: "POST",
@@ -15,6 +19,7 @@ function Learn() {
       }),
     })
       .then((response) => {
+        setloading(false)
         if (!response.ok) {
           throw new Error("Ошибка при запросе данных");
         }
@@ -28,12 +33,13 @@ function Learn() {
       .catch((error) => {
         console.error(error);
       });
+      
   };
   return (
     <div>
-      <button onClick={handleClick}  className="learnbutton">
+      {!loading ? <button onClick={handleClick}  className="learnbutton">
     Обучить
-      </button>
+      </button> : <button className="learnbutton"><img className="preload" src={Preload} width='80' alt="Загрузка..."/></button>}
     </div>
   );
 }
