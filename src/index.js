@@ -9,7 +9,7 @@ import { useState } from "react";
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState(false);
   const handleSubmit = (event) => {
     fetch(`${process.env.REACT_APP_API_URL}auth/login`, {
       method: "POST",
@@ -22,6 +22,11 @@ function LoginForm() {
       }),
     })
       .then((response) => {
+        if (!response.ok) {
+          setError(true)
+          throw new Error("Ошибка при запросе данных");
+
+        }
         return response.json();
       })
       .then((data) => {
@@ -32,7 +37,9 @@ function LoginForm() {
   };
 
   return (
+    
     <form className="login-form" onSubmit={handleSubmit}>
+       {error && <div className="unLogin">Не верный логин или пароль</div>}
       <label>
         <input
           className="input1"
