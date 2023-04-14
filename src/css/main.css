@@ -20,6 +20,8 @@ label {
   color: #444444;
   font-size: 16px;
   margin: 0 0 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 input.input1 {
@@ -27,7 +29,6 @@ input.input1 {
   border-radius: 5px;
   font-size: 16px;
   padding: 10px;
-  max-width: 90%;
 }
 
 button.login-button {

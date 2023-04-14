@@ -21,7 +21,6 @@ class Chat extends Component {
    
     if (inputValue !== "") {
       this.setState({ loading: true });
-      console.log(localStorage.getItem("token"));
       fetch(`${process.env.REACT_APP_API_URL}admin_chat/answer`, {
         method: "POST",
         headers: {
@@ -33,34 +32,30 @@ class Chat extends Component {
           message: inputValue,
         }),
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Ошибка при запросе данных");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("🚀 ~ file: chat.js:38 ~ Chat ~ handleMessageSend ~ data:", data)
-          this.setState({
-            answer: [...answer, data["answer"]],
-            loading: false
-          });
-        })
-        
-
-        .catch((error) => {
-          console.error(error);
-        });
-       
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка при запросе данных");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("🚀 ~ file: chat.js:38 ~ Chat ~ handleMessageSend ~ data:", data)
         this.setState({
-          messages: [...messages, inputValue],
-          inputValue: "",
+          answer: [...answer, data["answer"]],
+          loading: false
         });
-        event.preventDefault();
-    } else {
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
       this.setState({
+        messages: [...messages, inputValue],
         inputValue: "",
       });
+      event.preventDefault();
+    } else {
+      this.setState({inputValue: "",});
       event.preventDefault();
     }
   }
@@ -69,7 +64,6 @@ class Chat extends Component {
     let { messages, inputValue, answer,loading} = this.state;
     return (
       <div className="all">
-        <div className="list"></div>
         <div className="chat-container">
           <div className="message-container">
             {messages.map((message, index) => {
@@ -81,30 +75,33 @@ class Chat extends Component {
               )
              })}
           </div>
-          
+
           <form className = 'inputform' onSubmit={this.handleMessageSend}>
-          <div className="input-container">
-            {!loading ? <input
-              className="input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => this.setState({ inputValue: e.target.value })}
-              onKeyDown={(e) => e.key === "Enter" ? this.handleMessageSend : null}
-            /> : <input 
-            className="input"
-            type="text"
-            value={inputValue}
-            placeholder="Загрузка..."
-            readOnly ='true'
-            onChange={(e) => this.setState({ inputValue: e.target.value })}
-            onKeyDown={(e) => e.key === "Enter" ? this.handleMessageSend : null}
-          /> }
-            <button type = "onSubmit" className="send-button" >
-              Send
-            </button>
+            <div className="input-container">
+              {
+                !loading ?
+                <input
+                  className="input"
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => this.setState({ inputValue: e.target.value })}
+                  onKeyDown={(e) => e.key === "Enter" ? this.handleMessageSend : null}
+                /> :
+                <input 
+                  className="input"
+                  type="text"
+                  value={inputValue}
+                  placeholder="Загрузка..."
+                  readOnly={true}
+                  onChange={(e) => this.setState({ inputValue: e.target.value })}
+                  onKeyDown={(e) => e.key === "Enter" ? this.handleMessageSend : null}
+                />
+              }
+              <button type = "onSubmit" className="send-button" >
+                Send
+              </button>
             </div>
-            </form>
-          
+          </form>
         </div>
       </div>
     );

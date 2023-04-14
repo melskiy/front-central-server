@@ -5,7 +5,7 @@
   font-family: "Lato", sans-serif;
   /* margin:auto; */
   width: 100%;
-
+  margin: 1vh 0 0;
   overflow-x: hidden;
   
 }
@@ -41,9 +41,15 @@ textarea {
 }
 
 .item{
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
   margin-bottom: 0.5vh;
 }
+
+.item label {
+  margin: auto 0;
+}
+
 hr{
   width: 100%;
 }

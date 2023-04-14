@@ -4,6 +4,7 @@ import GetBots from "./GetBots.js";
 import ButtonReg from "./button_reg";
 import Logout from "./Logout_button";
 import Learn from "./learnbutton";
+
 class Page extends Component {
   render() {
     return (
@@ -16,7 +17,6 @@ class Page extends Component {
           <Learn/>
         </div>
         <Logout />
-        
         <Chat />
       </div>
     );

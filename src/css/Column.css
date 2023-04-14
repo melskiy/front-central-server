@@ -95,14 +95,22 @@
   position: relative;
   max-width: 40%;
   height: 95vh;
-
   background-color: rgb(29, 20, 101);
   /* border: 2px solid #2633eb; */
+}
+.list::-webkit-scrollbar {
+  width: 2px;
+  background-color: transparent;
+}
+.list::-webkit-scrollbar-thumb {
+  width: 2px;
+  background-color: #571fda;
 }
 
 .but {
     background-color: rgb(29, 20, 101);
     color: #fff;
+    margin: 1vh 0 0;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -117,7 +125,4 @@
   display: fixed;
   padding: 0;
   margin: 8px 0 0;
-}
-.list{
-  display:inline-block;
 }

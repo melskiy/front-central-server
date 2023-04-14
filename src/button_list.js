@@ -6,12 +6,9 @@ const Button = ({ text }) => (
 );
 
 function ButtonList({ list }){
-  
   const [Delete, setDelete] = useState([]);
-  const showChild = (i) => (
-    setDelete(
-      [...Delete, i],
-    ),
+  const showChild = (i) => {
+    setDelete([...Delete, i]);
     fetch(`${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem("guid")}/${encodeURIComponent(i)}`, {
       method: "DELETE",
       headers: {
@@ -19,26 +16,22 @@ function ButtonList({ list }){
         "Content-Type": "application/json",
       },
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Ошибка при запросе данных");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-    
-
-  );
-  
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Ошибка при запросе данных");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+  };
   
   return(
   <div className="yuy">
     {list?.map((item, index) => {
-       console.log(Delete)
       if(item !== "" && !(Delete.find((str) => str === item)) ){
         return(
-        <div className="edit" id="editing">
+        <div key={index} className="edit" id="editing">
          <Button text={item} key={index} /> <EditButton item = {item}  showChild = {showChild}/>
         </div>)
       }else{

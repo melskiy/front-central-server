@@ -39,7 +39,7 @@ function LoginForm() {
   return (
     
     <form className="login-form" onSubmit={handleSubmit}>
-       {error && <div className="unLogin">Не верный логин или пароль</div>}
+       {error && <div className="unLogin">Неверный логин или пароль</div>}
       <label>
         <input
           className="input1"
@@ -66,7 +66,6 @@ function LoginForm() {
 }
 
 const token = localStorage.getItem("token");
-console.log("🚀 ~ file: index.js:62 ~ token :", token);
 
 const app = ReactDOMClient.createRoot(document.getElementById("app"));
 

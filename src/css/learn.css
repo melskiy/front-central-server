@@ -29,7 +29,8 @@
 
 .learnbutton {
   overflow: hidden;
-  background-color: rgb(122, 142, 239);
+  background-color: #571fda;
+  background-image: linear-gradient( to top, rgb(96, 9, 240), rgb(134, 9, 244) 30% );
 }
 
 

@@ -3,16 +3,16 @@ import "./css/form.css";
 
 function ButtonReg() {
   const [showComponent, setShowComponent] = useState(false);
-  const [clicked, setclicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
     setShowComponent(true);
-    setclicked(true);
+    setClicked(true);
   };
 
   const empty_div = () => {
     setShowComponent(false);
-    setclicked(false);
+    setClicked(false);
   };
 
   const Form = () => {
@@ -49,25 +49,24 @@ function ButtonReg() {
             answer: formData["answers"],
             rank: rang,
             bot_guid: localStorage.getItem("guid"),
-            examples: [formData["examples"]],
+            examples: formData["examples"].split(/\r?\n/).map(ex => ex.trim()).filter(ex => ex !== ""),
           }),
         })
-        
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Ошибка при запросе данных");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            console.log("🚀 ~ file: button_reg.js:56 ~ .then ~ data:", data);
-            return data;
-          })
-
-          .catch((error) => {
-            console.error(error);
-          });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Ошибка при запросе данных");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("🚀 ~ file: button_reg.js:56 ~ .then ~ data:", data);
+          return data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       }
+
       fetchData();
       e.preventDefault();
     };
@@ -102,7 +101,7 @@ function ButtonReg() {
               onChange={handleCheckboxChange}
 
             />
-          <label for="c">команда</label>
+          <label htmlFor="c">команда</label>
           </div>
 
           <label>
@@ -138,25 +137,22 @@ function ButtonReg() {
         </div>
       );
     }
-
     
-      return (
-        <div>
-          <React.Fragment><br/></React.Fragment>
+    return (
+      <div>
         <form className="forma" onSubmit={handleSubmit}>
-        <div className="item">
-            <input 
-              id="c"
-              type="checkbox"
-              name="command"
-              value={formData.command}
-              checked={formData.command}
-              onChange={handleCheckboxChange}
+          <div className="item">
+              <input 
+                id="c"
+                type="checkbox"
+                name="command"
+                value={formData.command}
+                checked={formData.command}
+                onChange={handleCheckboxChange}
 
-            />
-          <label for="c">команда</label>
+              />
+            <label htmlFor="c">Команда</label>
           </div>
-
           <label>
             <input className="inputs"
               type="text"
@@ -168,8 +164,7 @@ function ButtonReg() {
               min= {1}
             />
           </label>
-        
-          
+
           <label>
             <input className="inputs"
               type="text"
@@ -181,28 +176,24 @@ function ButtonReg() {
               onChange={handleChange}
             />
           </label>
-  
+
           <label className="placeholder">
-            
             <textarea
-               placeholder="Примеры"
+                placeholder="Примеры"
               value={formData.examples}
               name="examples"
               onChange={handleChange}
             />
           </label>
-  
+
           <button type="submit" className="submit">
             Отправить
           </button>
-          {/* <button className="cnel" onClick={cnel()}>
-            ❌
-          </button> */}
           <hr/>
         </form>
-        </div>
-      );
-    };
+      </div>
+    );
+  };
 
   return (
     <div className="but">

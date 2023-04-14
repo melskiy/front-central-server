@@ -3,8 +3,6 @@ import "./css/form.css";
 
 function DoIntents(props){
     const clicked = useState(props);
-    console.log(clicked)
-    console.log(`${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem("guid")}/${clicked[0]['name']}`)
     const [showComponent, setShowComponent] = useState(clicked[0]['clicked']);
     const Form = () => {
       const [formData, setFormData] = useState({
@@ -38,7 +36,7 @@ function DoIntents(props){
               answer: formData["answers"],
               rank: rang,
               bot_guid: localStorage.getItem("guid"),
-              examples: formData["examples"].split(/\r?\n/),
+              examples: formData["examples"].split(/\r?\n/).map(ex => ex.trim()).filter(ex => ex !== ""),
             }),
           })
           
@@ -63,7 +61,6 @@ function DoIntents(props){
     
       if (isSubmitted || !clicked[0]['clicked']) {
         setShowComponent(false);
-        // setIsSubmitted(false);
         return <div></div>;
       }
     
@@ -77,7 +74,6 @@ function DoIntents(props){
     
     if (isChecked){
       return (
-        
         <div>
           <React.Fragment><br/></React.Fragment>
         <form className="forma" onSubmit={handleSubmit}>
@@ -91,7 +87,7 @@ function DoIntents(props){
               onChange={handleCheckboxChange}
 
             />
-          <label for="c">команда</label>
+          <label htmlFor="c">команда</label>
           </div>
 
           <label>
@@ -121,10 +117,6 @@ function DoIntents(props){
           <button type="submit" className="submit">
             Отправить
           </button>
-          
-          {/* <button className="cnel" onClick={cnel()}>
-            ❌
-          </button> */}
           <hr/>
         </form>
         </div>
@@ -132,9 +124,7 @@ function DoIntents(props){
     }
 
       return (
-        
         <div>
-          <React.Fragment><br/></React.Fragment>
         <form className="forma" onSubmit={handleSubmit}>
         <div className="item">
             <input 
@@ -146,7 +136,7 @@ function DoIntents(props){
               onChange={handleCheckboxChange}
 
             />
-          <label for="c">команда</label>
+          <label htmlFor="c">Команда</label>
           </div>
 
           <label>
@@ -187,22 +177,14 @@ function DoIntents(props){
           <button type="submit" className="submit">
             Отправить
           </button>
-          {/* <button className="cnel" onClick={cnel()}>
-            ❌
-          </button> */}
           <hr/>
         </form>
         </div>
       );
     };
-    
-   
-      return(
-        <div>{showComponent && <Form />}</div>
-         );
-    
-  
-
-    } 
+  return(
+    <div>{showComponent && <Form />}</div>
+  );
+}
 
 export default DoIntents;
