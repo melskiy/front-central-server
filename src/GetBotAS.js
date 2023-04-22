@@ -18,8 +18,6 @@ function GetBotAS({ options }) {
         localStorage.setItem("guid", element["value"]);
       }
     });
-
-   
   }
 
   return (

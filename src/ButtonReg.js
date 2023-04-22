@@ -22,7 +22,6 @@ function ButtonReg() {
       examples: "",
     });
 
-
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxChange = (event) => {
       setIsChecked(event.target.checked);
@@ -49,22 +48,25 @@ function ButtonReg() {
             answer: formData["answers"],
             rank: rang,
             bot_guid: localStorage.getItem("guid"),
-            examples: formData["examples"].split(/\r?\n/).map(ex => ex.trim()).filter(ex => ex !== ""),
+            examples: formData["examples"]
+              .split(/\r?\n/)
+              .map((ex) => ex.trim())
+              .filter((ex) => ex !== ""),
           }),
         })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Ошибка при запросе данных");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("🚀 ~ file: button_reg.js:56 ~ .then ~ data:", data);
-          return data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Ошибка при запросе данных");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("🚀 ~ file: button_reg.js:56 ~ .then ~ data:", data);
+            return data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       }
 
       fetchData();
@@ -76,7 +78,7 @@ function ButtonReg() {
       // setIsSubmitted(false);
       return <div></div>;
     }
-  
+
     const handleChange = (e) => {
       const { name, value } = e.target;
       setFormData((prevData) => ({
@@ -84,102 +86,102 @@ function ButtonReg() {
         [name]: value,
       }));
     };
-      
-    if (isChecked){
+
+    if (isChecked) {
       return (
-        
         <div>
-          <React.Fragment><br/></React.Fragment>
-        <form className="forma" onSubmit={handleSubmit}>
-        <div className="item">
-            <input 
-              id="c"
-              type="checkbox"
-              name="command"
-              value={formData.command}
-              checked={formData.command}
-              onChange={handleCheckboxChange}
-
-            />
-          <label htmlFor="c">команда</label>
-          </div>
-
-          <label>
-            <input className="inputs"
-              type="text"
-              value={formData.topic}
-              name="name"
-              placeholder="Название"
-              onChange={handleChange}
-              required ={true}
-              min= {1}
-            />
-          </label>
-        
-          
-          <label>
-            <input className="inputs"
-              type="text"
-              placeholder="Ответ"
-              value={formData.title}
-              name="answers"
-              required ={true}
-              min= {1}
-              onChange={handleChange}
-            />
-          </label>
-          <button type="submit" className="submit">
-            Отправить
-          </button>
-          
-          <hr/>
-        </form>
-        </div>
-      );
-    }
-    
-    return (
-      <div>
-        <form className="forma" onSubmit={handleSubmit}>
-          <div className="item">
-              <input 
+          <br />
+          <form className="forma" onSubmit={handleSubmit}>
+            <div className="item">
+              <input
                 id="c"
                 type="checkbox"
                 name="command"
                 value={formData.command}
                 checked={formData.command}
                 onChange={handleCheckboxChange}
-
               />
+              <label htmlFor="c">команда</label>
+            </div>
+
+            <label>
+              <input
+                className="inputs"
+                type="text"
+                value={formData.topic}
+                name="name"
+                placeholder="Название"
+                onChange={handleChange}
+                required={true}
+                min={1}
+              />
+            </label>
+
+            <label>
+              <input
+                className="inputs"
+                type="text"
+                placeholder="Ответ"
+                value={formData.title}
+                name="answers"
+                required={true}
+                min={1}
+                onChange={handleChange}
+              />
+            </label>
+            <button type="submit" className="submit">
+              Отправить
+            </button>
+
+            <hr />
+          </form>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <form className="forma" onSubmit={handleSubmit}>
+          <div className="item">
+            <input
+              id="c"
+              type="checkbox"
+              name="command"
+              value={formData.command}
+              checked={formData.command}
+              onChange={handleCheckboxChange}
+            />
             <label htmlFor="c">Команда</label>
           </div>
           <label>
-            <input className="inputs"
+            <input
+              className="inputs"
               type="text"
               value={formData.topic}
               name="name"
               placeholder="Название"
               onChange={handleChange}
-              required ={true}
-              min= {1}
+              required={true}
+              min={1}
             />
           </label>
 
           <label>
-            <input className="inputs"
+            <input
+              className="inputs"
               type="text"
               placeholder="Ответ"
               value={formData.title}
               name="answers"
-              required ={true}
-              min= {1}
+              required={true}
+              min={1}
               onChange={handleChange}
             />
           </label>
 
           <label className="placeholder">
             <textarea
-                placeholder="Примеры"
+              placeholder="Примеры"
               value={formData.examples}
               name="examples"
               onChange={handleChange}
@@ -189,7 +191,7 @@ function ButtonReg() {
           <button type="submit" className="submit">
             Отправить
           </button>
-          <hr/>
+          <hr />
         </form>
       </div>
     );

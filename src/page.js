@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Chat from "./Chat.js"
-import GetBots from "./GetBots.js";
-import ButtonReg from "./button_reg";
-import Logout from "./Logout_button";
-import Learn from "./learnbutton";
+import Chat from "./Chat";
+import GetBots from "./GetBots";
+import ButtonReg from "./ButtonReg";
+import LogoutButton from "./LogoutButton";
+import LearnButton from "./LearnButton";
 
 class Page extends Component {
   render() {
@@ -14,9 +14,9 @@ class Page extends Component {
             <ButtonReg />
           </div>
           <GetBots />
-          <Learn/>
+          <LearnButton />
         </div>
-        <Logout />
+        <LogoutButton />
         <Chat />
       </div>
     );

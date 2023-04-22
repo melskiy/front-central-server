@@ -3,7 +3,7 @@ import * as ReactDOMClient from "react-dom/client";
 
 import "./css/main.css";
 import "./css/background.css";
-import Page from "./page.js";
+import Page from "./Page";
 import { useState } from "react";
 
 function LoginForm() {
@@ -23,9 +23,8 @@ function LoginForm() {
     })
       .then((response) => {
         if (!response.ok) {
-          setError(true)
+          setError(true);
           throw new Error("Ошибка при запросе данных");
-
         }
         return response.json();
       })
@@ -37,9 +36,8 @@ function LoginForm() {
   };
 
   return (
-    
     <form className="login-form" onSubmit={handleSubmit}>
-       {error && <div className="unLogin">Неверный логин или пароль</div>}
+      {error && <div className="unLogin">Неверный логин или пароль</div>}
       <label>
         <input
           className="input1"

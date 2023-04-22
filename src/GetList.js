@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ButtonList from "./button_list";
+import ButtonList from "./ButtonList";
 
 function GetIntents() {
   const [data, setData] = useState([]);
@@ -34,7 +34,6 @@ function GetIntents() {
 
   return (
     <div className="puka">
-      {" "}
       <ButtonList list={values} />{" "}
     </div>
   );

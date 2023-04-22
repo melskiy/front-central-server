@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./css/LogoutButton.css";
 
-function Logout() {
+function LogoutButton() {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
 
   const handleLogout = () => {
@@ -25,4 +25,4 @@ function Logout() {
   );
 }
 
-export default Logout;
+export default LogoutButton;
