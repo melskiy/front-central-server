@@ -1,7 +1,7 @@
-import React, {  Component } from "react";
-import "./css/Chat.css";
-import Preload from "./preload.gif";
-
+import React, { Component } from "react"
+import "./css/Chat.css"
+import Preload from "./preload.gif"
+import ButtonColorChange from "./ColorChange"
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -11,9 +11,24 @@ class Chat extends Component {
       answer: [],
       inputValue: "",
       loading: false,
+      rang: true,
     };
 
     this.handleMessageSend = this.handleMessageSend.bind(this);
+    this.abs = this.abs.bind(this);
+  }
+  abs(index) {
+    let { answer, rang } = this.state;
+
+    ButtonColorChange(rang);
+
+    return (
+      <div>
+        <div className="bot-answer" key={index}>
+          {answer[index]}
+        </div>
+      </div>
+    );
   }
 
   handleMessageSend(event) {
@@ -40,6 +55,9 @@ class Chat extends Component {
         })
         .then((data) => {
           console.log("🚀 chat.js ~ Chat ~ handleMessageSend ~ data:", data);
+
+          this.setState({ rang: data["rank"] !== -1 });
+
           this.setState({
             answer: [...answer, data["answer"]],
             loading: false,
@@ -62,6 +80,7 @@ class Chat extends Component {
 
   render() {
     let { messages, inputValue, answer, loading } = this.state;
+
     return (
       <div className="all">
         <div className="chat-container">
@@ -71,9 +90,7 @@ class Chat extends Component {
                 <div key={index} className="message">
                   <div className="user-message">{message}</div>
                   {answer[index] ? (
-                    <div className="bot-answer" key={index}>
-                      {answer[index]}
-                    </div>
+                    this.abs(index)
                   ) : (
                     <div className="bot-answer">
                       {" "}

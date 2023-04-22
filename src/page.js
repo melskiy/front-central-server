@@ -3,7 +3,7 @@ import Chat from "./Chat";
 import GetBots from "./GetBots";
 import ButtonReg from "./ButtonReg";
 import LogoutButton from "./LogoutButton";
-import LearnButton from "./LearnButton";
+import LearnButton from "./Learnbutton";
 
 function Page() {
   return (

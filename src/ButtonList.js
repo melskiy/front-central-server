@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./css/Column.css";
 import EditButton from "./EditButton";
 
-const Button = ({ text }) => (
-  <button className="custom-btn btn-2">{text}</button>
-);
+function Button ({ text })  {
+  return ((text[0] === "/") ? <button className="custom-btn btn-2">{text}</button> : <button className="custom-btn btn-2 intent">{text}</button>)
+};
 
 function ButtonList({ list }) {
   const [Delete, setDelete] = useState([]);

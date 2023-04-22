@@ -26,6 +26,7 @@
     rgba(129, 5, 240, 1) 100%
   );
   border: none;
+  pointer-events: none;
 }
 
 .btn-2:before {
