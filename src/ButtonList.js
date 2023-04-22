@@ -8,6 +8,7 @@ const Button = ({ text }) => (
 
 function ButtonList({ list }) {
   const [Delete, setDelete] = useState([]);
+
   const showChild = (i) => {
     setDelete([...Delete, i]);
     fetch(
@@ -32,16 +33,16 @@ function ButtonList({ list }) {
 
   return (
     <div className="yuy">
-      {list?.map((item, index) => {
+      {list?.map((item) => {
         if (item !== "" && !Delete.find((str) => str === item)) {
           return (
-            <div key={index} className="edit" id="editing">
-              <Button text={item} key={index} />{" "}
+            <div key={item} className="edit" id="editing">
+              <Button text={item} key={item} />{" "}
               <EditButton item={item} showChild={showChild} />
             </div>
           );
         } else {
-          return <div></div>;
+          return <div key={item}></div>;
         }
       })}
     </div>

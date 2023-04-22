@@ -21,14 +21,15 @@ function ButtonReg() {
       answers: "",
       examples: "",
     });
-
     const [isChecked, setIsChecked] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
     const handleCheckboxChange = (event) => {
       setIsChecked(event.target.checked);
     };
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
     const handleSubmit = (e) => {
+      e.preventDefault();
       setIsSubmitted(true);
       console.log(formData);
 
@@ -70,7 +71,6 @@ function ButtonReg() {
       }
 
       fetchData();
-      e.preventDefault();
     };
 
     if (isSubmitted) {
@@ -87,58 +87,6 @@ function ButtonReg() {
       }));
     };
 
-    if (isChecked) {
-      return (
-        <div>
-          <br />
-          <form className="forma" onSubmit={handleSubmit}>
-            <div className="item">
-              <input
-                id="c"
-                type="checkbox"
-                name="command"
-                value={formData.command}
-                checked={formData.command}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="c">команда</label>
-            </div>
-
-            <label>
-              <input
-                className="inputs"
-                type="text"
-                value={formData.topic}
-                name="name"
-                placeholder="Название"
-                onChange={handleChange}
-                required={true}
-                min={1}
-              />
-            </label>
-
-            <label>
-              <input
-                className="inputs"
-                type="text"
-                placeholder="Ответ"
-                value={formData.title}
-                name="answers"
-                required={true}
-                min={1}
-                onChange={handleChange}
-              />
-            </label>
-            <button type="submit" className="submit">
-              Отправить
-            </button>
-
-            <hr />
-          </form>
-        </div>
-      );
-    }
-
     return (
       <div>
         <form className="forma" onSubmit={handleSubmit}>
@@ -153,6 +101,7 @@ function ButtonReg() {
             />
             <label htmlFor="c">Команда</label>
           </div>
+
           <label>
             <input
               className="inputs"
@@ -179,14 +128,16 @@ function ButtonReg() {
             />
           </label>
 
-          <label className="placeholder">
-            <textarea
-              placeholder="Примеры"
-              value={formData.examples}
-              name="examples"
-              onChange={handleChange}
-            />
-          </label>
+          {!isChecked && (
+            <label className="placeholder">
+              <textarea
+                placeholder="Примеры"
+                value={formData.examples}
+                name="examples"
+                onChange={handleChange}
+              />
+            </label>
+          )}
 
           <button type="submit" className="submit">
             Отправить

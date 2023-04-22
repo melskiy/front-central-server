@@ -27,14 +27,10 @@ function GetIntents() {
     }
     fetchData();
   }, [guid]);
-  let values = [];
-  data.forEach((element) => {
-    values.push(element["name"]);
-  });
 
   return (
     <div className="puka">
-      <ButtonList list={values} />{" "}
+      <ButtonList list={data.map((intent) => intent["name"])} />{" "}
     </div>
   );
 }
