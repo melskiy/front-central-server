@@ -79,56 +79,6 @@ function DoIntents(props) {
       }));
     };
 
-    if (isChecked) {
-      return (
-        <div>
-          <form className="forma" onSubmit={handleSubmit}>
-            <div className="item">
-              <input
-                id="c"
-                type="checkbox"
-                name="command"
-                value={formData.command}
-                checked={formData.command}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="c">Команда</label>
-            </div>
-
-            <label>
-              <input
-                className="inputs"
-                type="text"
-                value={formData.topic}
-                name="name"
-                placeholder="Название"
-                onChange={handleChange}
-                required={true}
-                min={1}
-              />
-            </label>
-
-            <label>
-              <input
-                className="inputs"
-                type="text"
-                placeholder="Ответ"
-                value={formData.title}
-                name="answers"
-                required={true}
-                min={1}
-                onChange={handleChange}
-              />
-            </label>
-            <button type="submit" className="submit">
-              Отправить
-            </button>
-            <hr />
-          </form>
-        </div>
-      );
-    }
-
     return (
       <div>
         <form className="forma" onSubmit={handleSubmit}>
@@ -170,14 +120,16 @@ function DoIntents(props) {
             />
           </label>
 
-          <label className="placeholder">
-            <textarea
-              placeholder="Примеры"
-              value={formData.examples}
-              name="examples"
-              onChange={handleChange}
-            />
-          </label>
+          {!isChecked && (
+            <label className="placeholder">
+              <textarea
+                placeholder="Примеры"
+                value={formData.examples}
+                name="examples"
+                onChange={handleChange}
+              />
+            </label>
+          )}
 
           <button type="submit" className="submit">
             Отправить
