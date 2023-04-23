@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import "./css/Chat.css"
-import Preload from "./preload.gif"
-import ButtonColorChange from "./ColorChange"
+import React, { Component } from "react";
+import "./css/Chat.css";
+import Preload from "./preload.gif";
+import ButtonColorChange from "./ColorChange";
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -11,17 +11,13 @@ class Chat extends Component {
       answer: [],
       inputValue: "",
       loading: false,
-      rang: true,
     };
 
     this.handleMessageSend = this.handleMessageSend.bind(this);
     this.abs = this.abs.bind(this);
   }
   abs(index) {
-    let { answer, rang } = this.state;
-
-    ButtonColorChange(rang);
-
+    let { answer } = this.state;
     return (
       <div>
         <div className="bot-answer" key={index}>
@@ -55,8 +51,13 @@ class Chat extends Component {
         })
         .then((data) => {
           console.log("🚀 chat.js ~ Chat ~ handleMessageSend ~ data:", data);
+          localStorage.setItem("predicted", data["name"]);
 
-          this.setState({ rang: data["rank"] !== -1 });
+          if (data["rank"] !== -1) {
+            ButtonColorChange(true);
+          } else {
+            ButtonColorChange(false);
+          }
 
           this.setState({
             answer: [...answer, data["answer"]],
@@ -64,6 +65,10 @@ class Chat extends Component {
           });
         })
         .catch((error) => {
+          this.setState({
+            answer: [...answer, "ошибка"],
+            loading: false,
+          });
           console.error(error);
         });
 

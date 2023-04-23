@@ -3,7 +3,6 @@ import "./css/Column.css";
 function ButtonColorChange(isInt) {
   if (isInt) {
     const buttons = document.querySelectorAll(".intent");
-
     buttons.forEach((button) => {
       button.style.background = "red";
       button.style.pointerEvents = "all";

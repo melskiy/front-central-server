@@ -1,10 +1,55 @@
 import React, { useState } from "react";
 import "./css/Column.css";
 import EditButton from "./EditButton";
+import ButtonColorChange from "./ColorChange";
 
-function Button ({ text })  {
-  return ((text[0] === "/") ? <button className="custom-btn btn-2">{text}</button> : <button className="custom-btn btn-2 intent">{text}</button>)
-};
+function handleClick(text) {
+  console.log("sss");
+  if (text !== localStorage.getItem("predicted")) {
+    fetch(
+      `${process.env.REACT_APP_API_URL}ml/step/${localStorage.getItem(
+        "guid"
+      )}/${text}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          bot_guid: localStorage.getItem("guid"),
+          intent_name: text,
+        }),
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка при запросе данных");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("step", data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  ButtonColorChange(false);
+}
+
+function Button({ text }) {
+  return text[0] === "/" ? (
+    <button className="custom-btn btn-2">{text}</button>
+  ) : (
+    <button
+      className="custom-btn btn-2 intent"
+      onClick={handleClick.bind(null, text)}
+    >
+      {text}
+    </button>
+  );
+}
 
 function ButtonList({ list }) {
   const [Delete, setDelete] = useState([]);
@@ -12,7 +57,9 @@ function ButtonList({ list }) {
   const showChild = (i) => {
     setDelete([...Delete, i]);
     fetch(
-      `${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem("guid")}/${encodeURIComponent(i)}`,
+      `${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem(
+        "guid"
+      )}/${encodeURIComponent(i)}`,
       {
         method: "DELETE",
         headers: {
