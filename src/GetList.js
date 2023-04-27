@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ButtonList from "./ButtonList";
-
+import Chat from "./Chat";
 function GetIntents() {
+  const chat = useMemo(() => {
+    return new Chat();
+  }, []);
   const [data, setData] = useState([]);
   let [guid] = useState("");
   guid = localStorage.getItem("guid");
@@ -20,13 +23,15 @@ function GetIntents() {
         );
         if (!response.ok) throw new Error("Ошибка при запросе данных");
         const data = await response.json();
+
         setData(data);
       } catch (error) {
         console.error(error);
       }
     }
     fetchData();
-  }, [guid]);
+    chat.History();
+  }, [guid, chat]);
 
   return (
     <div className="puka">

@@ -16,6 +16,11 @@ class Chat extends Component {
     this.handleMessageSend = this.handleMessageSend.bind(this);
     this.abs = this.abs.bind(this);
   }
+
+  History() {
+    console.log("My function was called!");
+  }
+
   abs(index) {
     let { answer } = this.state;
     return (
