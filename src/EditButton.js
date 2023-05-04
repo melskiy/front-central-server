@@ -3,7 +3,7 @@ import "./css/EditButton.css";
 import DoIntents from "./DoIntents";
 
 function EditButton(props) {
-  const { showChild, item } = props;
+  const { showChild, intent } = props;
   const [showComponent, setShowComponent] = useState(false);
   const [clicked, setClicked] = useState(false);
 
@@ -26,11 +26,11 @@ function EditButton(props) {
         >
           <i className="fas fa-edit">✏️</i>
         </button>
-        <button className="delete-button" onClick={() => showChild(item)}>
+        <button className="delete-button" onClick={() => showChild(intent["name"])}>
           <i className="fas fa-edit">🗑️</i>
         </button>
       </div>
-      {showComponent && <DoIntents clicked={clicked} name={item} />}
+      {showComponent && <DoIntents clicked={clicked} intent={intent} />}
     </div>
   );
 }

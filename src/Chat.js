@@ -92,66 +92,60 @@ class Chat extends Component {
     let { messages, inputValue, answer, loading } = this.state;
 
     return (
-      <div className="all">
-        <div className="chat-container">
-          <div className="message-container">
-            {messages.map((message, index) => {
-              return (
-                <div key={index} className="message">
-                  <div className="user-message">{message}</div>
-                  {answer[index] ? (
-                    this.abs(index)
-                  ) : (
-                    <div className="bot-answer">
-                      {" "}
-                      <img
-                        className="preload"
-                        src={Preload}
-                        width="80"
-                        alt="Загрузка..."
-                      />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <form className="input-form" onSubmit={this.handleMessageSend}>
-            <div className="input-container">
-              {!loading ? (
-                <input
-                  className="input"
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) =>
-                    this.setState({ inputValue: e.target.value })
-                  }
-                  onKeyDown={(e) =>
-                    e.key === "Enter" ? this.handleMessageSend : null
-                  }
-                />
-              ) : (
-                <input
-                  className="input"
-                  type="text"
-                  value={inputValue}
-                  placeholder="Загрузка..."
-                  readOnly={true}
-                  onChange={(e) =>
-                    this.setState({ inputValue: e.target.value })
-                  }
-                  onKeyDown={(e) =>
-                    e.key === "Enter" ? this.handleMessageSend : null
-                  }
-                />
-              )}
-              <button type="onSubmit" className="send-button">
-                Send
-              </button>
-            </div>
-          </form>
+      <div className="chat-container">
+        <div className="message-container">
+          {messages.map((message, index) => {
+            return (
+              <div key={index} className="message">
+                <div className="user-message">{message}</div>
+                {answer[index] ? (
+                  this.abs(index)
+                ) : (
+                  <div className="bot-answer">
+                    {" "}
+                    <img
+                      className="preload"
+                      src={Preload}
+                      width="80"
+                      alt="Загрузка..."
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
+
+        <form className="input-form" onSubmit={this.handleMessageSend}>
+          <div className="input-container">
+            {!loading ? (
+              <input
+                className="input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => this.setState({ inputValue: e.target.value })}
+                onKeyDown={(e) =>
+                  e.key === "Enter" ? this.handleMessageSend : null
+                }
+              />
+            ) : (
+              <input
+                className="input"
+                type="text"
+                value={inputValue}
+                placeholder="Загрузка..."
+                readOnly={true}
+                onChange={(e) => this.setState({ inputValue: e.target.value })}
+                onKeyDown={(e) =>
+                  e.key === "Enter" ? this.handleMessageSend : null
+                }
+              />
+            )}
+            <button type="onSubmit" className="send-button">
+              Send
+            </button>
+          </div>
+        </form>
       </div>
     );
   }

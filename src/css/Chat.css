@@ -28,6 +28,7 @@
   padding: 8px;
 }
 .bot-answer{
+  white-space: pre-wrap;
   color: rgb(0,49,83);
   margin: 8px 0;
   padding: 8px;

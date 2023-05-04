@@ -4,7 +4,6 @@ import EditButton from "./EditButton";
 import ButtonColorChange from "./ColorChange";
 
 function handleClick(text) {
-  console.log("sss");
   if (text !== localStorage.getItem("predicted")) {
     fetch(
       `${process.env.REACT_APP_API_URL}ml/step/${localStorage.getItem(
@@ -51,7 +50,7 @@ function Button({ text }) {
   );
 }
 
-function ButtonList({ list }) {
+function ButtonList({ intents }) {
   const [Delete, setDelete] = useState([]);
 
   const showChild = (i) => {
@@ -80,12 +79,12 @@ function ButtonList({ list }) {
 
   return (
     <div className="yuy">
-      {list?.map((item) => {
-        if (item !== "" && !Delete.find((str) => str === item)) {
+      {intents?.map((item) => {
+        if (item !== "" && !Delete.find((str) => str === item["name"])) {
           return (
-            <div key={item} className="edit" id="editing">
-              <Button text={item} key={item} />{" "}
-              <EditButton item={item} showChild={showChild} />
+            <div key={item["name"]} className="edit" id="editing">
+              <Button text={item["name"]} key={item["name"]} />{" "}
+              <EditButton intent={item} showChild={showChild} />
             </div>
           );
         } else {

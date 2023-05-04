@@ -116,10 +116,9 @@ function ButtonReg() {
           </label>
 
           <label>
-            <input
+            <textarea
               className="inputs"
-              type="text"
-              placeholder="Ответ"
+              placeholder="Ответ бота"
               value={formData.title}
               name="answers"
               required={true}
@@ -131,7 +130,7 @@ function ButtonReg() {
           {!isChecked && (
             <label className="placeholder">
               <textarea
-                placeholder="Примеры"
+                placeholder="Примеры сообщений для данного ответа"
                 value={formData.examples}
                 name="examples"
                 onChange={handleChange}

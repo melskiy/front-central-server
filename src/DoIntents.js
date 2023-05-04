@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./css/form.css";
 
 function DoIntents(props) {
-  const clicked = useState(props);
-  const [showComponent, setShowComponent] = useState(clicked[0]["clicked"]);
+  const { clicked, intent } = props;
+  const [showComponent, setShowComponent] = useState(clicked);
 
   const Form = () => {
     const [formData, setFormData] = useState({
-      name: "",
-      answers: "",
-      examples: "",
+      name: intent["name"],
+      answer: intent["answer"],
+      examples: intent["examples"].map(ex => ex["text"]).join("\n"),
     });
     const [isChecked, setIsChecked] = useState(false);
 
@@ -28,7 +28,7 @@ function DoIntents(props) {
           rang = -1;
         }
         return fetch(
-          `${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem("guid")}/${encodeURIComponent(clicked[0]["name"])}`,
+          `${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem("guid")}/${encodeURIComponent(intent["name"])}`,
           {
             method: "POST",
             headers: {
@@ -37,7 +37,7 @@ function DoIntents(props) {
             },
             body: JSON.stringify({
               name: formData["name"],
-              answer: formData["answers"],
+              answer: formData["answer"],
               rank: rang,
               bot_guid: localStorage.getItem("guid"),
               examples: formData["examples"]
@@ -66,7 +66,7 @@ function DoIntents(props) {
       e.preventDefault();
     };
 
-    if (isSubmitted || !clicked[0]["clicked"]) {
+    if (isSubmitted || !clicked) {
       setShowComponent(false);
       return <div></div>;
     }
@@ -98,7 +98,7 @@ function DoIntents(props) {
             <input
               className="inputs"
               type="text"
-              value={formData.topic}
+              value={formData.name}
               name="name"
               placeholder="Название"
               onChange={handleChange}
@@ -108,12 +108,11 @@ function DoIntents(props) {
           </label>
 
           <label>
-            <input
+            <textarea
               className="inputs"
-              type="text"
-              placeholder="Ответ"
-              value={formData.title}
-              name="answers"
+              value={formData.answer}
+              name="answer"
+              placeholder="Ответ бота"
               required={true}
               min={1}
               onChange={handleChange}
@@ -123,7 +122,7 @@ function DoIntents(props) {
           {!isChecked && (
             <label className="placeholder">
               <textarea
-                placeholder="Примеры"
+                placeholder="Примеры сообщений для данного ответа"
                 value={formData.examples}
                 name="examples"
                 onChange={handleChange}

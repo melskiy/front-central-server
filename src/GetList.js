@@ -35,7 +35,7 @@ function GetIntents() {
 
   return (
     <div className="puka">
-      <ButtonList list={data.map((intent) => intent["name"])} />{" "}
+      <ButtonList intents={data} />{" "}
     </div>
   );
 }
