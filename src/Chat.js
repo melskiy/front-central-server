@@ -37,51 +37,63 @@ class Chat extends Component {
 
     if (inputValue !== "") {
       this.setState({ loading: true });
-      fetch(`${process.env.REACT_APP_API_URL}admin_chat/answer`, {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          bot_guid: localStorage.getItem("guid"),
-          message: inputValue,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Ошибка при запросе данных");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("🚀 chat.js ~ Chat ~ handleMessageSend ~ data:", data);
-          localStorage.setItem("predicted", data["name"]);
-
-          if (data["rank"] !== -1) {
-            ButtonColorChange(true);
-          } else {
-            ButtonColorChange(false);
-          }
-
-          this.setState({
-            answer: [...answer, data["answer"]],
-            loading: false,
-          });
-        })
-        .catch((error) => {
-          this.setState({
-            answer: [...answer, "ошибка"],
-            loading: false,
-          });
-          console.error(error);
+      if (!localStorage.getItem("guid")) {
+        this.setState({
+          answer: [...answer, "Выберите бота"],
+          loading: false,
         });
+        this.setState({
+          messages: [...messages, inputValue],
+          inputValue: "",
+        });
+        event.preventDefault();
+      } else {
+        fetch(`${process.env.REACT_APP_API_URL}admin_chat/answer`, {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            bot_guid: localStorage.getItem("guid"),
+            message: inputValue,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Ошибка при запросе данных");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("🚀 chat.js ~ Chat ~ handleMessageSend ~ data:", data);
+            localStorage.setItem("predicted", data["name"]);
 
-      this.setState({
-        messages: [...messages, inputValue],
-        inputValue: "",
-      });
-      event.preventDefault();
+            if (data["rank"] !== -1) {
+              ButtonColorChange(true);
+            } else {
+              ButtonColorChange(false);
+            }
+
+            this.setState({
+              answer: [...answer, data["answer"]],
+              loading: false,
+            });
+          })
+          .catch((error) => {
+            this.setState({
+              answer: [...answer, "ошибка"],
+              loading: false,
+            });
+            console.error(error);
+          });
+
+        this.setState({
+          messages: [...messages, inputValue],
+          inputValue: "",
+        });
+        event.preventDefault();
+      }
     } else {
       this.setState({ inputValue: "" });
       event.preventDefault();

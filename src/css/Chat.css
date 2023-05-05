@@ -1,13 +1,19 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 95%;
+  height: 100vh;
   min-width: 59%;
   width: 74%;
   z-index: 7;
   position: absolute;
   right: 0;
+  background: rgba(33, 10, 98, 0.15);
+  box-shadow: 0 4px 30px rgba(2, 48, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   bottom: 0px;
+ 
 }
 
 .message-container {
@@ -39,7 +45,7 @@
 
 .input-container {
   display: flex;
-  margin: 12px 0;
+  margin: 12px 0 12px 8px;
 }
 
 .input {

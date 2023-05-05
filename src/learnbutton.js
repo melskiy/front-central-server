@@ -9,7 +9,8 @@ function LearnButton() {
   const handleClick = () => {
     setLoading(true);
     const guid = localStorage.getItem("guid");
-    return fetch(`${process.env.REACT_APP_API_URL}ml/train/${guid}`, {
+    if(guid){
+return fetch(`${process.env.REACT_APP_API_URL}ml/train/${guid}`, {
       method: "POST",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -33,6 +34,10 @@ function LearnButton() {
       .catch((error) => {
         console.error(error);
       });
+    }else{
+      setLoading(false);
+    }
+    
   };
 
   return (
