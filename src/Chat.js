@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./css/Chat.css";
 import Preload from "./preload.gif";
 import ButtonColorChange from "./ColorChange";
+
 class Chat extends Component {
   constructor(props) {
     super(props);

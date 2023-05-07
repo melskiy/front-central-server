@@ -13,18 +13,16 @@ function GetBotAS({ options }) {
   function handleChange(event) {
     const value = event.target.value;
     setSelectedOption(value);
-    
-    if(value){
+
+    if (value) {
       list.forEach((element) => {
         if (element["key"] === value) {
           localStorage.setItem("guid", element["value"]);
         }
       });
-    }else{
+    } else {
       localStorage.removeItem("guid");
     }
-   
-    
   }
 
   return (

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./css/form.css";
 
@@ -7,16 +6,16 @@ function ButtonReg() {
   const [clicked, setClicked] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
 
-  const show = () =>{
+  const show = () => {
     return showWarning && showComponent;
-  }
+  };
 
   const handleClick = () => {
-    if(localStorage.getItem("guid")){
+    if (localStorage.getItem("guid")) {
       setShowComponent(true);
       setClicked(true);
       setShowWarning(true);
-    }else{
+    } else {
       setShowWarning(false);
     }
   };
@@ -167,7 +166,6 @@ function Form() {
       </form>
     </div>
   );
-};
-
+}
 
 export default ButtonReg;
