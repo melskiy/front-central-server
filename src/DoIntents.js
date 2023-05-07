@@ -23,10 +23,6 @@ function DoIntents(props) {
       console.log(formData);
 
       function fetchData() {
-        let rank = intent["rank"];
-        if (isChecked) {
-          rank = -1;
-        }
         return fetch(
           `${process.env.REACT_APP_API_URL}intents/form/${localStorage.getItem("guid")}/${encodeURIComponent(intent["name"])}`,
           {
@@ -38,7 +34,7 @@ function DoIntents(props) {
             body: JSON.stringify({
               name: formData["name"],
               answer: formData["answer"],
-              rank: rank,
+              is_command: isChecked,
               bot_guid: localStorage.getItem("guid"),
               examples: formData["examples"]
                 .split(/\r?\n/)

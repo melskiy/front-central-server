@@ -58,10 +58,6 @@ function Form() {
     console.log(formData);
 
     function fetchData() {
-      let rang = 0;
-      if (isChecked) {
-        rang = -1;
-      }
       return fetch(`${process.env.REACT_APP_API_URL}intents/form`, {
         method: "POST",
         headers: {
@@ -71,7 +67,7 @@ function Form() {
         body: JSON.stringify({
           name: formData["name"],
           answer: formData["answers"],
-          rank: rang,
+          is_command: isChecked,
           bot_guid: localStorage.getItem("guid"),
           examples: formData["examples"]
             .split(/\r?\n/)

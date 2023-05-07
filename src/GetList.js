@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import ButtonList from "./ButtonList";
 import Chat from "./Chat";
+
 function GetIntents() {
   const chat = useMemo(() => {
     return new Chat();
